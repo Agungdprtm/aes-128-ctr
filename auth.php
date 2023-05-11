@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
         } else {
             echo "<script language=\"JavaScript\">\n";
             echo "alert('Username atau Password Salah!');\n";
-            echo "window.location='Login.php'";
+            echo "window.location='index.php'";
             echo "</script>";
         }
     }
