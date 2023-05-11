@@ -34,17 +34,17 @@
                         <div class="d-flex flex-row align-items-center justify-content-between">
                             <ul class="metismenu my-4 d-flex align-items-center" id="menu1">
                                 <li class="active">
-                                    <a class="nav-link" href="index.php">
+                                    <a class="nav-link" href="/dashboard/index.php">
                                         <span class="mini-click-non fs-2 mx-4 text white">Dashboard</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" href="enkripsi.php" aria-expanded="false"><i
+                                    <a class="nav-link" href="/dashboard/enkripsi.php" aria-expanded="false"><i
                                             class="icon nalika-unlocked icon-wrap"></i> <span
                                             class="mini-click-non fs-2 mx-4 text white">Enkripsi</span></a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" href="dekripsi.php" aria-expanded="false"><i
+                                    <a class="nav-link" href="/dashboard/dekripsi.php" aria-expanded="false"><i
                                             class="icon nalika-unlocked icon-wrap"></i> <span
                                             class="mini-click-non fs-2 mx-4 text white">Deskripsi</span></a>
                                 </li>
