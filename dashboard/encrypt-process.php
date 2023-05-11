@@ -40,13 +40,13 @@ if (isset($_POST['encrypt_now'])) {
         exit();
     }
 
-    $sql1 = "INSERT INTO file VALUES (null, '$user', '$final_file', '$finalfile.rda', '', '$size2', '$key', now(), '1', '$deskripsi')";
+    $sql1 = "INSERT INTO file VALUES (null, '$user', '$final_file', '$finalfile.txt', '', '$size2', '$key', now(), '1', '$deskripsi')";
     $query1 = mysqli_query($connect, $sql1) or die(mysqli_error($connect));
 
     $sql2 = "select * from file where file_url =''";
     $query2 = mysqli_query($connect, $sql2) or die(mysqli_error($connect));
 
-    $url = $finalfile . ".rda";
+    $url = $finalfile . ".txt";
     $file_url = "hasil_ekripsi/$url";
 
     $sql3 = "UPDATE file SET file_url ='$file_url' WHERE file_url=''";

@@ -23,7 +23,7 @@ class Base64
         return $idx;
     }
 
-    private function  _getbyte($s, $i)
+    private function _getbyte($s, $i)
     {
         $x = ord($s[$i]);
         if ($x > 255) {
@@ -32,14 +32,14 @@ class Base64
         return $x;
     }
 
-    public function encode($s = '', $key = false)
+    function encode($s = '', $key = false)
     {
 
         if ($key && strlen($key) == 64) {
             $this->_alpha_gender($key);
         }
 
-        $s = (string)$s;
+        $s = (string) $s;
         $x = array();
         $imax = strlen($s) - strlen($s) % 3;
         $b10 = 0;
@@ -71,14 +71,14 @@ class Base64
         return implode('', $x);
     }
 
-    public function decode($s = '', $key = false)
+    function decode($s = '', $key = false)
     {
 
         if ($key && strlen($key) == 64) {
             $this->_alpha_gender($key);
         }
 
-        $s = (string)$s;
+        $s = (string) $s;
         $pads = 0;
         $imax = strlen($s);
         $x = array();
@@ -111,7 +111,7 @@ class Base64
         switch ($pads) {
             case 1:
                 $b10 = ($this->_getbyte64($s, $i) << 18) | ($this->_getbyte64($s, $i + 1) << 12) | ($this->_getbyte64($s, $i + 2) << 6);
-                $x[] = (chr($b10 >> 16)  . chr(($b10 >> 8) & 0xff));
+                $x[] = (chr($b10 >> 16) . chr(($b10 >> 8) & 0xff));
                 break;
 
             case 2:
