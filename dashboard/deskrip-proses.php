@@ -27,33 +27,19 @@ if (mysqli_num_rows($sql) > 0) {
 
     $aes        = new AesCtr();
     $fopen1     = fopen($file_path, "rb");
-    // $plain      = "";
+
     $cache      = "hasil_dekripsi/$file_name";
     $fopen2     = fopen($cache, "wb");
 
-    // if ($mod == 0) {
-    //     $banyak = $file_size / 16;
-    // } else {
-    //     $banyak = ($file_size - $mod) / 16;
-    //     $banyak = $banyak + 1;
-    // }
+   
 
     while(!feof($fopen1)) {
         $filedata    = fread($fopen1, 8192);
         $plain       = $aes->decrypt($filedata, $key, 128);
         fwrite($fopen2, $plain);
     }
-    // ini_set('max_execution_time', -1);
-    // ini_set('memory_limit', -1);
-    // for ($bawah = 0; $bawah < $banyak; $bawah++) {
-
-    //     $filedata    = fread($fopen1, 16);
-    //     $plain       = $aes->decrypt($filedata, $key, 128);
-    //     fwrite($fopen2, $plain);
-    // }
-    // $filedata    = fread($fopen1, 16);
-    // $plain       = $aes->decrypt($filedata, $key, 128);
-    // fwrite($fopen2, $plain);
+    
+    
     $_SESSION["download"] = $cache;
 
     echo ("<script language='javascript'>

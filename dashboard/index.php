@@ -34,7 +34,7 @@
                         <div class="d-flex flex-row align-items-center justify-content-between">
                             <ul class="metismenu my-4 d-flex align-items-center" id="menu1">
                                 <li class="active">
-                                    <a class="nav-link" href="index.html">
+                                    <a class="nav-link" href="index.php">
                                         <span class="mini-click-non fs-2 mx-4 text white">Dashboard</span>
                                     </a>
                                 </li>

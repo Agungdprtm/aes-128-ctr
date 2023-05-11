@@ -24,7 +24,7 @@ if (isset($_POST['encrypt_now'])) {
     $file_source        = fopen($file_tmpname, 'rb');
     $ext            = $info["extension"];
 
-    if ($ext == "txt" || $ext == "docx" || $ext == "pptx") {
+    if ($ext == "txt" || $ext == "docx" || $ext == "pptx" $ext == "pdf" $ext == "excel") {
     } else {
         echo ("<script language='javascript'>
         window.location.href='encrypt.php';

@@ -18,13 +18,13 @@ $data = mysqli_fetch_array($query);
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-    * {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        text-decoration: none;
-        box-sizing: border-box;
-    }
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
 </style>
 
 <head>
@@ -49,10 +49,14 @@ $data = mysqli_fetch_array($query);
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" href="enkripsi.php" aria-expanded="false"><i class="icon nalika-unlocked icon-wrap"></i> <span class="mini-click-non fs-2 mx-4 text white">Enkripsi</span></a>
+                                    <a class="nav-link" href="enkripsi.php" aria-expanded="false"><i
+                                            class="icon nalika-unlocked icon-wrap"></i> <span
+                                            class="mini-click-non fs-2 mx-4 text white">Enkripsi</span></a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" href="dekripsi.php" aria-expanded="false"><i class="icon nalika-unlocked icon-wrap"></i> <span class="mini-click-non fs-2 mx-4 text white">Deskripsi</span></a>
+                                    <a class="nav-link" href="dekripsi.php" aria-expanded="false"><i
+                                            class="icon nalika-unlocked icon-wrap"></i> <span
+                                            class="mini-click-non fs-2 mx-4 text white">Deskripsi</span></a>
                                 </li>
                             </ul>
                             <div class="">
@@ -70,7 +74,7 @@ $data = mysqli_fetch_array($query);
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body p-4">
-                        <div class="table-responsive" style="color:#fff;">
+                        <div class="table-responsive" style="color:#000000;">
                             <table id="file" class="table striped">
                                 <thead>
                                     <tr>
@@ -87,12 +91,12 @@ $data = mysqli_fetch_array($query);
                                     $i = 1;
                                     $query = mysqli_query($connect, "SELECT * FROM file");
                                     while ($data = mysqli_fetch_array($query)) { ?>
-                                        <tr>
-                                            <td><?php echo $i; ?></td>
-                                            <td><?php echo $data['file_name_source']; ?></td>
-                                            <td><?php echo $data['file_name_finish']; ?></td>
-                                            <td><?php echo $data['file_url']; ?></td>
-                                            <td><?php if ($data['status'] == 1) {
+                                    <tr>
+                                        <td><?php echo $i; ?></td>
+                                        <td><?php echo $data['file_name_source']; ?></td>
+                                        <td><?php echo $data['file_name_finish']; ?></td>
+                                        <td><?php echo $data['file_url']; ?></td>
+                                        <td><?php if ($data['status'] == 1) {
                                                     echo "Enkripsi";
                                                 } elseif ($data['status'] == 2) {
                                                     echo "Dekripsi";
@@ -100,8 +104,8 @@ $data = mysqli_fetch_array($query);
                                                     echo "Status Tidak Diketahui";
                                                 }
                                                 ?></td>
-                                            <td>
-                                                <?php
+                                        <td>
+                                            <?php
                                                 $a = $data['id_file'];
                                                 if ($data['status'] == 1) {
                                                     echo '<a href="decrypt-file.php?id_file=' . $a . '" class="btn btn-primary">Dekripsi File</a>';
@@ -112,8 +116,8 @@ $data = mysqli_fetch_array($query);
                                                 }
                                                 ?>
 
-                                            </td>
-                                        </tr>
+                                        </td>
+                                    </tr>
                                     <?php
                                         $i++;
                                     } ?>
