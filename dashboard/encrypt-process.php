@@ -40,7 +40,7 @@ if (isset($_POST['encrypt_now'])) {
         exit();
     }
 
-    $sql1 = "INSERT INTO file VALUES ('', '$user', '$final_file', '$finalfile.rda', '', '$size2', '$key', now(), '1', '$deskripsi')";
+    $sql1 = "INSERT INTO file VALUES (null, '$user', '$final_file', '$finalfile.rda', '', '$size2', '$key', now(), '1', '$deskripsi')";
     $query1 = mysqli_query($connect, $sql1) or die(mysqli_error($connect));
 
     $sql2 = "select * from file where file_url =''";
