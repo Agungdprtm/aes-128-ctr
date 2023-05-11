@@ -18,8 +18,7 @@
                 </div>
                 <div class="div">
                     <!-- <h5>Username</h5> -->
-                    <input class="form-control" type="text" name="username" placeholder="Username" autofocus
-                        autocomplete="off" required>
+                    <input class="form-control" type="text" name="username" placeholder="Username" autofocus autocomplete="off" required>
                 </div>
             </div>
             <div class="input-div pass">
@@ -31,8 +30,7 @@
                     <input class="form-control" type="password" name="password" placeholder="Password" required>
                 </div>
             </div>
-            <button class="btn btn-primary btn-block" name="login">Login <i
-                    class="fa fa-sign-in fa-lg"></i></button><br>
+            <button class="btn btn-primary btn-block" name="login">Login <i class="fa fa-sign-in fa-lg"></i></button><br>
             <!-- <input type="submit" class="btn" value="Login"> -->
 
         </form>

@@ -59,4 +59,3 @@ if(mysqli_num_rows($sql)>0){
     window.alert('Maaf, Password tidak sesuai.');
     </script>");
 }
-?>

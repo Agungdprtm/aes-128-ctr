@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-    * {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        text-decoration: none;
-        box-sizing: border-box;
-    }
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 
@@ -39,14 +39,10 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" href="enkripsi.php" aria-expanded="false"><i
-                                            class="icon nalika-unlocked icon-wrap"></i> <span
-                                            class="mini-click-non fs-2 mx-4 text white">Enkripsi</span></a>
+                                    <a class="nav-link" href="enkripsi.php" aria-expanded="false"><i class="icon nalika-unlocked icon-wrap"></i> <span class="mini-click-non fs-2 mx-4 text white">Enkripsi</span></a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" href="dekripsi.php" aria-expanded="false"><i
-                                            class="icon nalika-unlocked icon-wrap"></i> <span
-                                            class="mini-click-non fs-2 mx-4 text white">Deskripsi</span></a>
+                                    <a class="nav-link" href="dekripsi.php" aria-expanded="false"><i class="icon nalika-unlocked icon-wrap"></i> <span class="mini-click-non fs-2 mx-4 text white">Deskripsi</span></a>
                                 </li>
                             </ul>
                             <div class="">
