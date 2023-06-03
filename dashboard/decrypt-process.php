@@ -1,14 +1,19 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+ini_set('max_execution_time', 600); // Increase maximum execution time
+error_reporting(E_ALL);
+
 session_start();
-include "../config.php"; //memasukan koneksi
-include "AES.php"; //memasukan file AES
-include "Polybius.php";
-// include "base64.php";
+include "../config.php";
+include "AES.php";
+include "Padkey.php";
 
 $idfile = mysqli_escape_string($connect, $_POST['fileid']);
 $pwdfile = mysqli_escape_string($connect, substr(md5($_POST["pwdfile"]), 0, 16));
 $query = "SELECT password FROM file WHERE id_file='$idfile' AND password='$pwdfile'";
 $sql = mysqli_query($connect, $query);
+
 if (mysqli_num_rows($sql) > 0) {
     $query1 = "SELECT * FROM file WHERE id_file='$idfile'";
     $sql1 = mysqli_query($connect, $query1);
@@ -26,10 +31,11 @@ if (mysqli_num_rows($sql) > 0) {
 
     $mod = $file_size % 16;
 
-    $aes = new AES($key);
-    $poly = new Polybius();
+    $pad = new Paddkey();
+    $padkey = $pad->adjustKeyLength($key, 128);
+    $aes = new Aes($padkey);
+
     $fopen1 = fopen($file_path, "rb");
-    $plain = "";
     $cache = "hasil_dekripsi/$file_name";
     $fopen2 = fopen($cache, "wb");
 
@@ -40,22 +46,21 @@ if (mysqli_num_rows($sql) > 0) {
         $banyak = $banyak + 1;
     }
 
-    ini_set('max_execution_time', -1);
-    ini_set('memory_limit', -1);
-    for ($bawah = 0; $bawah < $banyak; $bawah++) {
+    $filedata = fread($fopen1, $file_size);
+    $base = base64_decode($filedata);
+    $plain = $aes->decrypt($base);
+    fwrite($fopen2, $plain);
 
-        $filedata = fread($fopen1, 16);
-        $plain = $aes->decrypt($filedata);
-        fwrite($fopen2, $plain);
-    }
+    fclose($fopen1);
+    fclose($fopen2);
+
     $_SESSION["download"] = $cache;
 
-    // echo ("<script language='javascript'>
-    //    window.open('download.php', '_blank');
-    //    window.location.href='dekripsi.php';
-    //    window.alert('Berhasil mendekripsi file.');
-    //    </script>
-    //    ");
+    echo ("<script language='javascript'>
+       window.open('download.php', '_blank');
+       window.location.href='dekripsi.php';
+       window.alert('Berhasil mendekripsi file.');
+       </script>");
 } else {
     echo ("<script language='javascript'>
     window.location.href='decrypt-file.php?id_file=$idfile';

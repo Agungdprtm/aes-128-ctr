@@ -1,9 +1,13 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+ini_set('max_execution_time', 600); // Increase maximum execution time
+error_reporting(E_ALL);
+
 session_start();
-include "../config.php"; //memasukan koneksi
-include "AES.php"; //memasukan file AES
-include "Polybius.php";
-// include "base64.php";
+include "../config.php";
+include "AES.php";
+include "Padkey.php";
 
 if (isset($_POST['encrypt_now'])) {
     $start_limit = microtime(true);
@@ -66,19 +70,18 @@ if (isset($_POST['encrypt_now'])) {
     }
 
     if (is_uploaded_file($file_tmpname)) {
-        ini_set('max_execution_time', -1);
-        ini_set('memory_limit', -1);
-        $aes = new AES($key);
-        $poly = new Polybius();
+        $pad = new Paddkey();
+        $padkey = $pad->adjustKeyLength($key, 128);
+        $aes = new Aes($padkey);
 
-        for ($bawah = 0; $bawah < $banyak; $bawah++) {
-            $data = fread($file_source, 16);
-            $cipher = $aes->encrypt($data);
-            fwrite($file_output, $cipher);
-            $akhir_limit = microtime(true);
-            $total_limit = $akhir_limit - $start_limit;
-            $limit = round($total_limit, 2);
-        }
+        $data = fread($file_source, $size);
+        $cipher = $aes->encrypt($data);
+        $base = base64_encode($cipher);
+        fwrite($file_output, $base);
+        $akhir_limit = microtime(true);
+        $total_limit = $akhir_limit - $start_limit;
+        $limit = round($total_limit, 2);
+
         fclose($file_source);
         fclose($file_output);
 
