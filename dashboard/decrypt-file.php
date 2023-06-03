@@ -2,7 +2,7 @@
 session_start();
 include('../config.php');
 if (empty($_SESSION['username'])) {
-  header("location:../index.php");
+    header("location:../index.php");
 }
 $last = $_SESSION['username'];
 $sqlupdate = "UPDATE users SET last_activ=now() WHERE username='$last'";
@@ -26,173 +26,117 @@ $data = mysqli_fetch_array($query);
 </head>
 
 <body>
-    <div class="left-sidebar-pro">
-        <nav id="sidebar" class="">
-            <div class="nalika-profile">
-                <div class="profile-dtl">
-                    <a href="#"><img
-                            src="https://lh3.googleusercontent.com/ogw/ADGmqu-5A4r40ZPotQWqRs5qBqjF1pxruJuJs5TURuzdZw=s83-c-mo"
-                            alt="" /></a>
-                    <h2>
-                        <?php echo $data['fullname']; ?>
-                        <p class="designation icon" style="color:green;">
-                            <?php echo $data['job_title']; ?>
-                        </p>
-                    </h2>
-                </div>
-                <div class="profile-social-dtl">
-                    <ul class="dtl-social">
-                        <li><a href="#"><i class="icon nalika-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon nalika-twitter"></i></a></li>
-                        <li><a href="#"><i class="icon nalika-linkedin"></i></a></li>
-                    </ul>
-                </div>
+    <div class="sidebar fixed top-0 bottom-0 lg:left-0 left-[-300px] duration-1000
+      p-2 w-[300px] overflow-y-auto text-center bg-gray-900 shadow h-screen">
+        <div class="text-gray-100 text-xl">
+            <div class="p-2.5 mt-1 flex items-center rounded-md ">
+                <img src="img/logo-puslitbang.svg" alt="" class="h-10 w-10" /></i>
+                <h1 class="text-[15px]  ml-3 text-xl text-gray-200 font-bold">Puslitbang Polri</h1>
             </div>
-            <div class="left-custom-menu-adp-wrap comment-scrollbar">
-                <nav class="sidebar-nav left-sidebar-menu-pro">
-                    <ul class="metismenu" id="menu1">
-                        <li class="active">
-                            <a class="nav-link" href="index.php">
-                                <i class="icon nalika-home icon-wrap"></i>
-                                <span class="mini-click-non">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="enkripsi.php" aria-expanded="false"><i
-                                    class="icon nalika-unlocked icon-wrap"></i> <span
-                                    class="mini-click-non">Enkripsi</span></a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="dekripsi.php" aria-expanded="false"><i
-                                    class="icon nalika-unlocked icon-wrap"></i> <span
-                                    class="mini-click-non">Dekripsi</span></a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </nav>
-    </div>
-    <!-- Start Welcome area -->
-    <div class="all-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <hr class="my-2 text-gray-600">
+
+            <div>
+                <div
+                    class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+                    <a class="nav-link" href="index.php">
+                        <span class="text-[15px] ml-4 text-gray-200">Dashboard</span>
+                    </a>
+                </div>
+                <div
+                    class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+                    <a class="nav-link" href="enkripsi.php">
+                        <span class="text-[15px] ml-4 text-gray-200">Enkripsi</span>
+                    </a>
+                </div>
+                <div
+                    class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+                    <a class="nav-link" href="dekripsi.php">
+                        <span class="text-[15px] ml-4 text-gray-200">Dekripsi</span>
+                    </a>
+                </div>
+                <div
+                    class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <a class="nav-link" href="logout.php">
+                        <span class="text-[15px] ml-4 text-gray-200">Log Out</span>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="header-advance-area">
-            <div class="header-top-area">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="header-top-wraper">
-                                <div class="row">
-                                    <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
-                                        <div class="menu-switcher-pro">
-                                            <button type="button" id="sidebarCollapse"
-                                                class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
-                                                <i class="icon nalika-menu-task"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
-                                        <div class="header-top-menu tabl-d-n hd-search-rp">
-                                            <div class="breadcome-heading">
-                                                <form role="search" class="">
-                                                    <input type="text" placeholder="Search..." class="form-control">
-                                                    <a href=""><i class="fa fa-search"></i></a>
-                                                </form>
+    </div>
+    <section class="breadcome-list ml-[320px] p-10">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <?php
+                        $id_file = $_GET['id_file'];
+                        $query = mysqli_query($connect, "SELECT * FROM file WHERE id_file='$id_file'");
+                        $data2 = mysqli_fetch_array($query);
+                        ?>
+                        <h3 align="center" style="color:#000000;">Dekripsi File <i style="color:red">
+                                <?php echo $data2['file_name_finish'] ?>
+                            </i></h3><br>
+                        <form class="form-horizontal" method="post" action="decrypt-process.php">
+                            <div class="table-responsive">
+                                <table class="table striped" style="color:#000000;">
+                                    <tr>
+                                        <td>Nama File Sumber</td>
+                                        <td>:</td>
+                                        <td>
+                                            <?php echo $data2['file_name_source']; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nama File Enkripsi</td>
+                                        <td>:</td>
+                                        <td>
+                                            <?php echo $data2['file_name_finish']; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ukuran File</td>
+                                        <td>:</td>
+                                        <td>
+                                            <?php echo $data2['file_size']; ?> KB
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal Enkripsi</td>
+                                        <td>:</td>
+                                        <td>
+                                            <?php echo $data2['tgl_upload']; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Keterangan</td>
+                                        <td>:</td>
+                                        <td>
+                                            <?php echo $data2['keterangan']; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Masukkan Password Untuk Mendekrip</td>
+                                        <td></td>
+                                        <td>
+                                            <div class="col-md-6">
+                                                <input type="hidden" name="fileid"
+                                                    value="<?php echo $data2['id_file']; ?>">
+                                                <input class="form-control" id="inputPassword" type="password"
+                                                    placeholder="Password" name="pwdfile" required><br>
+                                                <input type="submit" name="decrypt_now" value="Dekripsi File"
+                                                    class="form-control btn btn-primary">
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                                        <div class="header-right-info">
-                                            <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                                                <li class="nav-item">
-                                                    <a href="logout.php"> Log Out</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <section class="breadcome-list">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <?php
-                $id_file = $_GET['id_file'];
-                $query = mysqli_query($connect, "SELECT * FROM file WHERE id_file='$id_file'");
-                $data2 = mysqli_fetch_array($query);
-                ?>
-                                <h3 align="center" style="color:#fff;">Dekripsi File <i style="color:red">
-                                        <?php echo $data2['file_name_finish'] ?>
-                                    </i></h3><br>
-                                <form class="form-horizontal" method="post" action="decrypt-process.php">
-                                    <div class="table-responsive">
-                                        <table class="table striped" style="color:#fff;">
-                                            <tr>
-                                                <td>Nama File Sumber</td>
-                                                <td>:</td>
-                                                <td>
-                                                    <?php echo $data2['file_name_source']; ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Nama File Enkripsi</td>
-                                                <td>:</td>
-                                                <td>
-                                                    <?php echo $data2['file_name_finish']; ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ukuran File</td>
-                                                <td>:</td>
-                                                <td>
-                                                    <?php echo $data2['file_size']; ?> KB
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tanggal Enkripsi</td>
-                                                <td>:</td>
-                                                <td>
-                                                    <?php echo $data2['tgl_upload']; ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Keterangan</td>
-                                                <td>:</td>
-                                                <td>
-                                                    <?php echo $data2['keterangan']; ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Masukkan Password Untuk Mendekrip</td>
-                                                <td></td>
-                                                <td>
-                                                    <div class="col-md-6">
-                                                        <input type="hidden" name="fileid"
-                                                            value="<?php echo $data2['id_file']; ?>">
-                                                        <input class="form-control" id="inputPassword" type="password"
-                                                            placeholder="Password" name="pwdfile" required><br>
-                                                        <input type="submit" name="decrypt_now" value="Dekripsi File"
-                                                            class="form-control btn btn-primary">
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        </div>
+    </section>
 </body>
 
 </html>

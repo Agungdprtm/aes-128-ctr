@@ -5,7 +5,7 @@ if (empty($_SESSION['username'])) {
   header("location:../index.php");
 }
 $last = $_SESSION['username'];
-$sqlupdate = "UPDATE users SET last_activity=now() WHERE username='$last'";
+$sqlupdate = "UPDATE users SET last_activ=now() WHERE username='$last'";
 $queryupdate = mysqli_query($connect, $sqlupdate);
 ?>
 <!DOCTYPE html>
@@ -26,148 +26,71 @@ $data = mysqli_fetch_array($query);
 </head>
 
 <body>
-  <div class="left-sidebar-pro">
-    <nav id="sidebar" class="">
-      <div class="nalika-profile">
-        <div class="profile-dtl">
-          <a href="#"><img src="https://lh3.googleusercontent.com/ogw/ADGmqu-5A4r40ZPotQWqRs5qBqjF1pxruJuJs5TURuzdZw=s83-c-mo" alt="" /></a>
-          <h2><?php echo $data['fullname']; ?><p class="designation icon" style="color:green;"><?php echo $data['job_title']; ?></p>
-          </h2>
+  <div class="sidebar fixed top-0 bottom-0 lg:left-0 left-[-300px] duration-1000
+      p-2 w-[300px] overflow-y-auto text-center bg-gray-900 shadow h-screen">
+    <div class="text-gray-100 text-xl">
+      <div class="p-2.5 mt-1 flex items-center rounded-md ">
+        <img src="img/logo-puslitbang.svg" alt="" class="h-10 w-10" /></i>
+        <h1 class="text-[15px]  ml-3 text-xl text-gray-200 font-bold">Puslitbang Polri</h1>
+      </div>
+      <hr class="my-2 text-gray-600">
+
+      <div>
+        <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+          <a class="nav-link" href="index.php">
+            <span class="text-[15px] ml-4 text-gray-200">Dashboard</span>
+          </a>
         </div>
-        <div class="profile-social-dtl">
-          <ul class="dtl-social">
-            <li><a href="#"><i class="icon nalika-facebook"></i></a></li>
-            <li><a href="#"><i class="icon nalika-twitter"></i></a></li>
-            <li><a href="#"><i class="icon nalika-linkedin"></i></a></li>
-          </ul>
+        <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+          <a class="nav-link" href="enkripsi.php">
+            <span class="text-[15px] ml-4 text-gray-200">Enkripsi</span>
+          </a>
+        </div>
+        <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+          <a class="nav-link" href="dekripsi.php">
+            <span class="text-[15px] ml-4 text-gray-200">Dekripsi</span>
+          </a>
+        </div>
+        <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <a class="nav-link" href="logout.php">
+            <span class="text-[15px] ml-4 text-gray-200">Log Out</span>
+          </a>
         </div>
       </div>
-      <div class="left-custom-menu-adp-wrap comment-scrollbar">
-        <nav class="sidebar-nav left-sidebar-menu-pro">
-          <ul class="metismenu" id="menu1">
-            <li class="active">
-              <a class="nav-link" href="index.php">
-                <i class="icon nalika-home icon-wrap"></i>
-                <span class="mini-click-non">Dashboard</span>
-              </a>
-            </li>
-            <li>
-              <a class="nav-link" href="enkripsi.php" aria-expanded="false"><i class="icon nalika-unlocked icon-wrap"></i> <span class="mini-click-non">Enkripsi</span></a>
-            </li>
-            <li>
-              <a class="nav-link" href="dekripsi.php" aria-expanded="false"><i class="icon nalika-unlocked icon-wrap"></i> <span class="mini-click-non">Dekripsi</span></a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </nav>
+    </div>
   </div>
-  <!-- Start Welcome area -->
-  <div class="all-content-wrapper">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="logo-pro">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="header-advance-area">
-      <div class="header-top-area">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="header-top-wraper">
-                <div class="row">
-                  <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
-                    <div class="menu-switcher-pro">
-                      <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
-                        <i class="icon nalika-menu-task"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
-                    <div class="header-top-menu tabl-d-n hd-search-rp">
-                      <div class="breadcome-heading">
-                        <form role="search" class="">
-                          <input type="text" placeholder="Search..." class="form-control">
-                          <a href=""><i class="fa fa-search"></i></a>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                    <div class="header-right-info">
-                      <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                        <li class="nav-item">
-                          <a href="logout.php"> Log Out</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+
+  <section class="breadcome-list ml-[320px] p-10">
+    <div class="card">
+      <div class="card-body">
+        <form class="form-horizontal" method="post" action="encrypt-process.php" enctype="multipart/form-data">
+          <fieldset>
+            <legend class="text-white">Form Enkripsi</legend>
+            <div class="mb-3">
+              <label for="inputFile" class="text-white">File</label>
+              <input class="form-control" id="inputFile" placeholder="Input File" type="file" name="file" required>
+            </div>
+            <div class="mb-3">
+              <label for="inputPassword" class="text-white">Key</label>
+              <input class="form-control" id="inputPassword" type="password" placeholder="Password" name="pwdfile"
+                required>
+            </div>
+            <div class="mb-3">
+              <label for="textArea" class="text-white">Deskripsi</label>
+              <textarea class="form-control" id="textArea" rows="3" name="desc" placeholder="Deskripsi"></textarea>
+            </div>
+            <div class="mb-3">
+              <div class="col-lg-2">
+                <input type="submit" name="encrypt_now" value="Enkripsi File" class="form-control btn btn-info">
               </div>
             </div>
-          </div>
-        </div>
+          </fieldset>
+        </form>
       </div>
-      <!-- <div class="footer-copyright-area">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="footer-copy-right">
-                            <h2 style="color:#fff;">Enkripsi File</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-      <section class="breadcome-list">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-body">
-                <form class="form-horizontal" method="post" action="encrypt-process.php" enctype="multipart/form-data">
-                  <fieldset>
-                    <legend style="color:#fff;">Form Enkripsi</legend>
-                    <!-- <div class="form-group">
-                          <label class="col-lg-2 control-label" style="color:#484747;" for="inputPassword">Tanggal</label>
-                          <div class="col-lg-4">
-                            <input class="form-control" id="inputTgl" type="text" placeholder="Tanggal" name="datenow" value="<?php echo date("Y-m-d"); ?>" readonly>
-                          </div>
-                        </div> -->
-                    <div class="form-group">
-                      <label class="col-lg-2 control-label" style="color:#fff;" for="inputFile">File</label>
-                      <div class="col-lg-4">
-                        <input class="form-control" id="inputFile" placeholder="Input File" type="file" name="file" required>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-lg-2 control-label" style="color:#fff;" for="inputPassword">Key</label>
-                      <div class="col-lg-4">
-                        <input class="form-control" id="inputPassword" type="password" placeholder="Password" name="pwdfile" required>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-lg-2 control-label" style="color:#fff;" for="textArea">Deskripsi</label>
-                      <div class="col-lg-4">
-                        <textarea class="form-control" id="textArea" rows="3" name="desc" placeholder="Deskripsi"></textarea>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="col-lg-2 control-label" for="textArea"></label>
-                      <div class="col-lg-2">
-                        <input type="submit" name="encrypt_now" value="Enkripsi File" class="form-control btn btn-info">
-                      </div>
-                    </div>
-                  </fieldset>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
+  </section>
 </body>
+
 
 </html>

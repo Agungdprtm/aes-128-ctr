@@ -1,5 +1,4 @@
 <?php
-include "base64.php";
 
 class AES
 {
@@ -667,10 +666,8 @@ class AES
 				$cipher .= chr($data);
 			}
 		}
-		$base64 = new Base64();
-		$modified = $base64->encode($cipher);
 
-		return $modified;
+		return $cipher;
 	}
 
 	function decrypt($input)
@@ -730,9 +727,7 @@ class AES
 			}
 		}
 
-		$base64 = new Base64();
-		$data = $base64->decode($plain);
-		return $data;
+		return $plain;
 
 	}
 
@@ -972,3 +967,4 @@ class AES
 	}
 
 }
+?>

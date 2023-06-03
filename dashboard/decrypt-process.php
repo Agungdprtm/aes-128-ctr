@@ -2,6 +2,8 @@
 session_start();
 include "../config.php"; //memasukan koneksi
 include "AES.php"; //memasukan file AES
+include "Polybius.php";
+// include "base64.php";
 
 $idfile = mysqli_escape_string($connect, $_POST['fileid']);
 $pwdfile = mysqli_escape_string($connect, substr(md5($_POST["pwdfile"]), 0, 16));
@@ -25,6 +27,7 @@ if (mysqli_num_rows($sql) > 0) {
     $mod = $file_size % 16;
 
     $aes = new AES($key);
+    $poly = new Polybius();
     $fopen1 = fopen($file_path, "rb");
     $plain = "";
     $cache = "hasil_dekripsi/$file_name";
@@ -47,12 +50,12 @@ if (mysqli_num_rows($sql) > 0) {
     }
     $_SESSION["download"] = $cache;
 
-    echo ("<script language='javascript'>
-       window.open('download.php', '_blank');
-       window.location.href='dekripsi.php';
-       window.alert('Berhasil mendekripsi file.');
-       </script>
-       ");
+    // echo ("<script language='javascript'>
+    //    window.open('download.php', '_blank');
+    //    window.location.href='dekripsi.php';
+    //    window.alert('Berhasil mendekripsi file.');
+    //    </script>
+    //    ");
 } else {
     echo ("<script language='javascript'>
     window.location.href='decrypt-file.php?id_file=$idfile';

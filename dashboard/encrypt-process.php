@@ -2,8 +2,11 @@
 session_start();
 include "../config.php"; //memasukan koneksi
 include "AES.php"; //memasukan file AES
+include "Polybius.php";
+// include "base64.php";
 
 if (isset($_POST['encrypt_now'])) {
+    $start_limit = microtime(true);
     $user = $_SESSION['username'];
     $key = mysqli_escape_string($connect, substr(md5($_POST["pwdfile"]), 0, 16));
     $deskripsi = mysqli_escape_string($connect, $_POST['desc']);
@@ -66,18 +69,22 @@ if (isset($_POST['encrypt_now'])) {
         ini_set('max_execution_time', -1);
         ini_set('memory_limit', -1);
         $aes = new AES($key);
+        $poly = new Polybius();
 
         for ($bawah = 0; $bawah < $banyak; $bawah++) {
             $data = fread($file_source, 16);
             $cipher = $aes->encrypt($data);
             fwrite($file_output, $cipher);
+            $akhir_limit = microtime(true);
+            $total_limit = $akhir_limit - $start_limit;
+            $limit = round($total_limit, 2);
         }
         fclose($file_source);
         fclose($file_output);
 
         echo ("<script language='javascript'>
         window.location.href='enkripsi.php';
-        window.alert('Enkripsi Berhasil..');
+        window.alert('$limit detik, Enkripsi Berhasil..');
         </script>");
     } else {
         echo ("<script language='javascript'>
